@@ -1,0 +1,105 @@
+
+public class CourseworkDriver {
+
+    public static void main(String args[]) {
+
+        CharacterCreator heroCreator = new HeroCreator();
+        CharacterCreator enemyCreator = new EnemyCreator();
+        
+        //comment out two lines below to use a hero of different classes
+        Character hero = heroCreator.createCharacter("Warrior");
+        //Character hero = heroCreator.createCharacter("Rogue");
+        //Character hero = heroCreator.createCharacter("Mage");
+
+        Character enemy;
+
+        //first do while loop
+        do {
+            enemy = enemyCreator.createCharacter("Vampire");
+
+            //first sub do while loop
+            do {
+                hero.attack(enemy);
+                enemy.attack(hero);
+            } while (hero.isAlive() ^ enemy.isDead() || hero.isDead() ^ enemy.isAlive());
+
+            if (hero.isAlive()) {
+                hero.restoreToFull();
+            }
+
+            enemy = enemyCreator.createCharacter("Werewolf");
+
+            //second sub do while loop
+            do {
+                hero.attack(enemy);
+                enemy.attack(hero);
+            } while (hero.isAlive() ^ enemy.isDead() || hero.isDead() ^ enemy.isAlive());
+
+            if (hero.isAlive()) {
+                hero.restoreToFull();
+            }
+
+            enemy = enemyCreator.createCharacter("Fairy");
+
+            //third sub do while loop
+            do {
+                hero.attack(enemy);
+                enemy.attack(hero);
+            } while (hero.isAlive() ^ enemy.isDead() || hero.isDead() ^ enemy.isAlive());
+
+            if (hero.isAlive()) {
+                hero.restoreToFull();
+            }
+
+        } while (hero.getLevel() < 3 ^ hero.isDead());
+        
+        //comment this line and the do while loop out to view output for above
+        ///*
+        hero = new Supreme(new Champion(hero));
+        
+        //second do while loop
+        do {
+            enemy = new Supreme(enemyCreator.createCharacter("Vampire"));
+
+            //first sub do while loop
+            do {
+                hero.attack(enemy);
+                enemy.attack(hero);
+            } while (hero.isAlive() ^ enemy.isDead() || hero.isDead() ^ enemy.isAlive());
+
+            if (hero.isAlive()) {
+                hero.restoreToFull();
+            }
+
+            enemy = new Alpha(enemyCreator.createCharacter("Werewolf"));
+
+            //second do while loop
+            do {
+                hero.attack(enemy);
+                enemy.attack(hero);
+            } while (hero.isAlive() ^ enemy.isDead() || hero.isDead() ^ enemy.isAlive());
+
+            if (hero.isAlive()) {
+                hero.restoreToFull();
+            }
+
+            enemy = new Lower(enemyCreator.createCharacter("Fairy"));
+            
+            //third do while loop
+            do {
+                hero.attack(enemy);
+                enemy.attack(hero);
+            } while (hero.isAlive() ^ enemy.isDead() || hero.isDead() ^ enemy.isAlive());
+
+            if (hero.isAlive()) {
+                hero.restoreToFull();
+            }
+
+        } while (hero.getLevel() < 5 ^ hero.isDead());
+        //*/
+        
+        //display health and energy of the hero
+        hero.displayCurrentStats();
+    }
+
+}

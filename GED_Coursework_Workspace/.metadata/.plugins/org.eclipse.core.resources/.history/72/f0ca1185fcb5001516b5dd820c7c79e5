@@ -1,0 +1,8 @@
+
+public class VampireHealthRegen implements HealthRegenBehaviour{
+    
+    @Override
+    public void healthRegen(Character character) {
+        character.setHealth(character.getHealth() + 1);
+    }
+}

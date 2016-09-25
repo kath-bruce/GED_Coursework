@@ -1,0 +1,91 @@
+
+public class CourseworkDriver {
+
+    public static void main(String args[]) {
+
+        CharacterCreator heroCreator = new HeroCreator();
+        //Character hero = heroCreator.createCharacter("Warrior");
+        Character hero = heroCreator.createCharacter("Rogue");
+        //Character hero = heroCreator.createCharacter("Mage");
+
+        CharacterCreator enemyCreator = new EnemyCreator();
+        Character enemy;
+
+        do {
+            enemy = enemyCreator.createCharacter("Vampire");
+
+            do {
+                hero.attack(enemy);
+                enemy.attack(hero);
+            } while (hero.isAlive() ^ enemy.isDead() || hero.isDead() ^ enemy.isAlive());
+
+            if (hero.isAlive()) {
+                hero.restoreToFull();
+            }
+
+            enemy = enemyCreator.createCharacter("Werewolf");
+
+            do {
+                hero.attack(enemy);
+                enemy.attack(hero);
+            } while (hero.isAlive() ^ enemy.isDead() || hero.isDead() ^ enemy.isAlive());
+
+            if (hero.isAlive()) {
+                hero.restoreToFull();
+            }
+
+            enemy = enemyCreator.createCharacter("Fairy");
+
+            do {
+                hero.attack(enemy);
+                enemy.attack(hero);
+            } while (hero.isAlive() ^ enemy.isDead() || hero.isDead() ^ enemy.isAlive());
+
+            if (hero.isAlive()) {
+                hero.restoreToFull();
+            }
+
+        } while (hero.getLevel() < 3 ^ hero.isDead());
+        
+        hero = new Supreme(new Champion(hero));
+        
+        do {
+            enemy = new Supreme(enemyCreator.createCharacter("Vampire"));
+
+            do {
+                hero.attack(enemy);
+                enemy.attack(hero);
+            } while (hero.isAlive() ^ enemy.isDead() || hero.isDead() ^ enemy.isAlive());
+
+            if (hero.isAlive()) {
+                hero.restoreToFull();
+            }
+
+            enemy = new Alpha(enemyCreator.createCharacter("Werewolf"));
+
+            do {
+                hero.attack(enemy);
+                enemy.attack(hero);
+            } while (hero.isAlive() ^ enemy.isDead() || hero.isDead() ^ enemy.isAlive());
+
+            if (hero.isAlive()) {
+                hero.restoreToFull();
+            }
+
+            enemy = new Lower(enemyCreator.createCharacter("Fairy"));
+            
+            do {
+                hero.attack(enemy);
+                enemy.attack(hero);
+            } while (hero.isAlive() ^ enemy.isDead() || hero.isDead() ^ enemy.isAlive());
+
+            if (hero.isAlive()) {
+                hero.restoreToFull();
+            }
+
+        } while (hero.getLevel() < 5 ^ hero.isDead());
+        
+        hero.displayCurrentStats();
+    }
+
+}

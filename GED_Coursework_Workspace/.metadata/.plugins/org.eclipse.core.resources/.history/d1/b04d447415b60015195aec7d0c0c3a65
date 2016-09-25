@@ -1,0 +1,76 @@
+
+public abstract class Hero extends Character {
+
+    private Integer level;
+    private Integer uppXPLimit;
+    
+    public Hero() {
+        super();
+        this.setDefaults();
+    }
+    
+    public void setDefaults() {
+        this.setLevel(1);
+        this.setMaxHealth(50);
+        this.setHealth(this.getMaxHealth());
+        this.setMaxEnergy(75);
+        this.setEnergy(this.getMaxEnergy());
+        this.setStrength(5);
+        this.setEnergyUsage(5);
+        this.setXP(0);
+        this.setUppXPLimit(25);
+        this.setHealthRegenBehaviour(new HeroHealthRegen());
+        this.setEnergyRegenBehaviour(new HeroEnergyRegen());
+        this.setState(this.getEnergisedHeroState());
+    }
+    
+    public void setDefaults(Integer level) {
+        this.setMaxHealth(this.getMaxHealth() + 25);
+        this.setHealth(this.getMaxHealth());
+        this.setEnergy(this.getMaxEnergy() + 30);
+        this.setMaxEnergy(this.getEnergy());
+        this.setStrength(this.getStrength() + 1);
+        this.setEnergyUsage(this.getEnergyUsage() - 1);
+        this.setXP(0);
+        this.setUppXPLimit(this.getUppXPLimit() + 25);
+        this.setHealthRegenBehaviour(new HeroHealthRegen());
+        this.setEnergyRegenBehaviour(new HeroEnergyRegen());
+        this.setState(this.getEnergisedHeroState());
+    }
+    
+    public void levelUp() {
+        this.setLevel(this.getLevel() + 1);
+        this.setDefaults(this.getLevel());
+    }
+    
+    @Override
+    public void levelUpTo(Integer level) {
+        this.setLevel(level);
+        this.setDefaults(level);
+    }
+    
+    @Override
+    public Integer getLevel() {
+        return this.level;
+    }
+    
+    // set to private as if this method is invoked
+    // then values for the hero will be inaccurate
+    // used by levelUpTo() method
+    private void setLevel(Integer level) {
+        this.level = level;
+    }
+    
+    public Integer getUppXPLimit() {
+        return this.uppXPLimit;
+    }
+    
+    public void setUppXPLimit(Integer uppXPLimit) {
+        this.uppXPLimit = uppXPLimit;
+    }
+    
+    @Override
+    public Integer getDamage() {
+        return (2 * this.getStrength());
+    }
+}

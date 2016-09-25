@@ -1,0 +1,8 @@
+
+public class HeroHealthRegen implements HealthRegenBehaviour {
+    
+	public void healthRegen(Object object) {
+    	Character character = (Character) object;
+        character.setHealth(character.getHealth() + 2);
+    }
+}
